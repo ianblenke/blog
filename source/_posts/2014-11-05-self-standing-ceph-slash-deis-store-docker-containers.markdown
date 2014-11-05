@@ -13,13 +13,21 @@ The first challenge is identifying an S3 implementation to throw into a containe
 
 There are a few feature sparse/dummy solutions that might suit development needs:
 
+- [s3-ninja](http://s3ninja.net/) (github [scireum/s3ninja](https://github.com/scireum/s3ninja))
 - [fake-s3](https://github.com/jubos/fake-s3)
+- [S3Mockup](http://sourceforge.net/projects/s3mockup/)
+(and a number of others which I'd rather not even consider)
 
-There are a few good options for actual S3 implementations:
+There are a few good functional options for actual S3 implementations:
 
 - [ceph](http://ceph.com) (github [ceph/ceph](https://github.com/ceph/ceph)), specifically the [radosgw](http://ceph.com/docs/master/radosgw/)
+- [walrus](https://github.com/eucalyptus/eucalyptus/wiki/Walrus-S3-API) from Eucalyptus
 - [riak cs](http://basho.com/riak-cloud-storage/)
 - [libres3](http://www.skylable.com/download/#LibreS3), backended by the opensource [Skylable Sx](http://www.skylable.com/download/#SX)
+- [cumulus](https://github.com/nimbusproject/nimbus/tree/master/cumulus) is an S3 implementation for [Nimbus](http://www.nimbusproject.org/docs/current/faq.html#cumulus)
+- [cloudian](http://www.cloudian.com/community-edition.php) which is a non-opensource commercial product
+- [swift3](https://github.com/stackforge/swift3) as an S3 compatibility layer with swift on the backend
+- [vblob](https://github.com/cloudfoundry-attic/vblob) a node.js based attic'ed project at CloudFoundry
 - [parkplace](https://github.com/mattjamieson/parkplace) backended by bittorrent
 - [boardwalk]([https://github.com/razerbeans/boardwalk]) backended by ruby, sinatra, and mongodb
 
