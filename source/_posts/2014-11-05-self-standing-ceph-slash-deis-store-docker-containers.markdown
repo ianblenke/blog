@@ -7,7 +7,7 @@ categories: [docker, boot2docker, ceph, deis, aws, s3, orchestration]
 ---
 A common challenge for cloud orchestration is simulating or providing an S3 service layer, particularly for development environments.
 
-As Docker is meant for immutable infrastructure, this poses somewhat of a challenge for production deployments. Rather than tackle that subject here, we'llrevisit persistence on immutable infrastructure in a production capacity in a future blog post.
+As Docker is meant for immutable infrastructure, this poses somewhat of a challenge for production deployments. Rather than tackle that subject here, we'll revisit persistence on immutable infrastructure in a production capacity in a future blog post.
 
 The first challenge is identifying an S3 implementation to throw into a container.
 
