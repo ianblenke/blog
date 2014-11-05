@@ -132,7 +132,7 @@ Note that the host here isn't the normal AWS gateway address, so you will need t
 
 Likewise, you may need to specify an URL scheme of "http", as the above does not expose an HTTPS encrypted port.
 
-There are also S3 client changes that (may be necessary)[https://github.com/deis/deis/issues/2326] depending on the "calling format" of the client libraries. You may need to [changes things like paperclip](http://stackoverflow.com/questions/24312350/using-paperclip-fog-and-ceph) to [work with fog](https://github.com/thoughtbot/paperclip/issues/1577). There are numerous tools that work happily with ceph, like [s3_to_ceph](https://github.com/stiller/s3_to_ceph/blob/master/s3_to_ceph.rb) and even gems like [fog-radosgw](https://github.com/fog/fog-radosgw) that try and help make this painless for your apps.
+There are also S3 client changes that [may be necessary](https://github.com/deis/deis/issues/2326) depending on the "calling format" of the client libraries. You may need to [changes things like paperclip](http://stackoverflow.com/questions/24312350/using-paperclip-fog-and-ceph) to [work with fog](https://github.com/thoughtbot/paperclip/issues/1577). There are numerous tools that work happily with ceph, like [s3_to_ceph](https://github.com/stiller/s3_to_ceph/blob/master/s3_to_ceph.rb) and even gems like [fog-radosgw](https://github.com/fog/fog-radosgw) that try and help make this painless for your apps.
 
 I will update this blog post shortly with an example of a containerized s3 client to show how to prove your ceph radosgw is working.
 
