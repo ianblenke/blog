@@ -7,7 +7,7 @@ title: Ian Blenke - DevOps
 subtitle: A 6502 hack living in a cloud orchestration world
 author: Ian Blenke
 simple_search: https://www.google.com/search
-description:
+description: Stories by Ian Blenke, a Senior DevOps Engineer at MalwareBytes
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -99,3 +99,4 @@ google_analytics_tracking_id: 53218787
 
 # Facebook Like
 facebook_like: false
+
