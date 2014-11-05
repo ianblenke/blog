@@ -33,11 +33,11 @@ If you happen to be targeting CoreOS, you can simply point your etcd --peers opt
 
 First, make sure your environment includes the `DOCKER_HOST` and related variables for the boot2docker environment:
 
-   eval $(boot2docker shellinit)
+    eval $(boot2docker shellinit)
 
 Now, discover the IP of the boot2docker guest VM, as that is what we will bind the etcd to:
 
-   IP="$(boot2docker ip 2>/dev/null)"
+    IP="$(boot2docker ip 2>/dev/null)"
 
 Next, we can spawn etcd and publish the ports for the other containers to use:
 
