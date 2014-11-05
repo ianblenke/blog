@@ -18,7 +18,7 @@ There are a few feature sparse/dummy solutions that might suit development needs
 - [S3Mockup](http://sourceforge.net/projects/s3mockup/)
 (and a number of others which I'd rather not even consider)
 
-There are a few good functional options for actual S3 implementations:
+There are a number of good functional options for actual S3 implementations:
 
 - [ceph](http://ceph.com) (github [ceph/ceph](https://github.com/ceph/ceph)), specifically the [radosgw](http://ceph.com/docs/master/radosgw/)
 - [walrus](https://github.com/eucalyptus/eucalyptus/wiki/Walrus-S3-API) from Eucalyptus
