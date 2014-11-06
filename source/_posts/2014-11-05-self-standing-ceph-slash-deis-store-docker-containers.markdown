@@ -29,7 +29,7 @@ There are a number of good functional options for actual S3 implementations:
 - [swift3](https://github.com/stackforge/swift3) as an S3 compatibility layer with swift on the backend
 - [vblob](https://github.com/cloudfoundry-attic/vblob) a node.js based attic'ed project at CloudFoundry
 - [parkplace](https://github.com/mattjamieson/parkplace) backended by bittorrent
-- [boardwalk]([https://github.com/razerbeans/boardwalk]) backended by ruby, sinatra, and mongodb
+- [boardwalk](https://github.com/razerbeans/boardwalk) backended by ruby, sinatra, and mongodb
 
 Of the above, one stands out as the underlying persistence engine used by a larger docker backended project: [Deis](http://deis.io)
 
