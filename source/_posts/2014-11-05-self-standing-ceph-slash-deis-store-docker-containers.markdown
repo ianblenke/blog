@@ -42,36 +42,21 @@ If you happen to be targeting CoreOS, you can simply point your etcd --peers opt
 
 First, make sure your environment includes the `DOCKER_HOST` and related variables for the boot2docker environment:
 
-    eval $(boot2docker shellinit)
+{% gist cab2661e67f5d79ae9bd %}
 
 Now, discover the IP of the boot2docker guest VM, as that is what we will bind the etcd to:
 
-    IP="$(boot2docker ip 2>/dev/null)"
+{% gist 00d61147bbf81ca26d2d %}
 
 Next, we can spawn etcd and publish the ports for the other containers to use:
 
-    docker run --name etcd \
-               --publish 4001:4001 \
-               --publish 7001:7001 \
-               --detach \
-               coreos/etcd:latest \
-               /go/bin/app -listen-client-urls http://0.0.0.0:4001 \
-                           -advertise-client-urls http://$IP:4001 \
-                           -listen-peer-urls http://0.0.0.0:7001 \
-                           -initial-advertise-peer-urls http://$IP:7001 \
-                           -data-dir=/tmp/etcd
+{% gist 3a47603ef0561e54ecb6 %}
 
 Normally, we wouldn't put the etcd persistence in a tmpfs for consistency reasons after a reboot, but for a development container: we love speed!
 
 Now that we have an etcd container running, we can spawn the deis-store daemon container that runs the ceph object-store daemon (OSD) module.
 
-    docker run --name deis-store-daemon \
-               --volumes-from=deis-store-daemon-data \
-               --env HOST=$IP \
-               --publish 6800 \
-               --net host \
-               --detach \
-               deis/store-daemon:latest
+{% gist c05525539a9f38e51e4b %}
 
 It is probably a good idea to mount the /var/lib/deis/store volume for persistence, but this is a developer container, so we'll forego that step.
 
@@ -85,9 +70,8 @@ It is generally a good idea to match the version of the etcdctl client with the 
 
 As the CoreOS team doesn't put out an etcdctl container as of yet, one way to do this is to build/install etcdctl inside a coreos/etcd container:
 
-    docker run --rm \
-               coreos/etcd \
-               /bin/sh -c "cd /go/src/github.com/coreos/etcd/etcdctl; go install ; /go/bin/etcdctl --peers $IP:4001 set /deis/store/hosts/$IP $IP"
+
+{% gist 4fcf5bcca7077a85e7ce %}
 
 This isn't ideal, of course, as there is a slight delay as etcdctl is built and installed before we use it, but it serves the purpose.
 
@@ -95,12 +79,7 @@ There are also [deis/store-daemon settings](http://docs.deis.io/en/latest/managi
 
 Now we can start deis-store-monitor, which will use that key to spin up a ceph-mon that monitors this (and any other) ceph-osd instances likewise registered in the etcd configuration tree.
 
-    docker run --name deis-store-monitor \
-               --env HOST=$IP \
-               --publish 6789 \
-               --net host \
-               --detach \
-               deis/store-monitor:latest
+{% gist 543a13ba9410f6cf2f8e %}
 
 As before, there are volumes that probably should be mounted for /etc/ceph and /var/lib/ceph/mon, but this is a development image, so we'll skip that.
 
@@ -110,13 +89,7 @@ Now that ceph-mon is running, ceph-osd will continue starting up. We now have a 
 
 The S3 functionality is provided by the ceph-radosgw component, which is provided by the deis-store-gateway container.
 
-    docker run --name deis-store-gateway \
-               --hostname deis-store-gateway \
-               --env HOST=$IP \
-               --env EXTERNAL_PORT=8888 \
-               --publish 8888:8888 \
-               --detach \
-               deis/store-gateway:latest
+{% gist 5634583a93347c415b3d %}
 
 There is no persistence in ceph-radosgw that warrant a volume mapping, so we can ignore that entirely regardless of environment.
 
@@ -124,10 +97,7 @@ There are also [deis/store-gateway settings](http://docs.deis.io/en/latest/manag
 
 We now have a functional self-standing S3 gateway, but we don't know the credentials to use it. For that, we can run etcdctl again:
 
-    AWS_ACCESS_KEY_ID=$(docker run --rm coreos/etcd /bin/sh -c "cd /go/src/github.com/coreos/etcd/etcdctl; go install ; /go/bin/etcdctl --peers $IP:4001 get /deis/store/gateway/accessKey")
-    AWS_SECRET_ACCESS_KEY=$(docker run --rm coreos/etcd /bin/sh -c "cd /go/src/github.com/coreos/etcd/etcdctl; go install ; /go/bin/etcdctl --peers $IP:4001 get /deis/store/gateway/secretKey")
-    AWS_S3_HOST=$(docker run --rm coreos/etcd /bin/sh -c "cd /go/src/github.com/coreos/etcd/etcdctl; go install ; /go/bin/etcdctl --peers $IP:4001 get /deis/store/gateway/host")
-    AWS_S3_PORT=$(docker run --rm coreos/etcd /bin/sh -c "cd /go/src/github.com/coreos/etcd/etcdctl; go install ; /go/bin/etcdctl --peers $IP:4001 get /deis/store/gateway/port")
+{% gist 9c43ccd03c6c082073b7 %}
 
 Note that the host here isn't the normal AWS gateway address, so you will need to specify things for your S3 client to access it correctly.
 

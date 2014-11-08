@@ -1,4 +1,7 @@
 <hgroup>
+  {% if site.gravatar_email %}
+      <img style="float: left; margin: 0px 15px 15px 0px;" src="{% gravatar_image %}" alt="Gravatar of {{ site.author}} " title="Gravatar of {{ site.author }}" />
+  {% endif %}
   <h1><a href="{{ root_url }}/">{{ site.title }}</a></h1>
   {% if site.subtitle %}
     <h2>{{ site.subtitle }}</h2>
