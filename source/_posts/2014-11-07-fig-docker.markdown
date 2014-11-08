@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "fig-docker'
+title: "fig-docker"
 date: 2014-11-07 19:20:06 -0500
 comments: true
 categories: docker fig development orchestration
