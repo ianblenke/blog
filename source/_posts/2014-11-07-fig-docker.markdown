@@ -10,7 +10,7 @@ A common devops problem when developing [Docker](http://docker.io) containers is
 
 There are a number of orchestration harnesses for Docker available:
 
-- OrchardUp's [Fig](http://fig.sh)
+- Docker's [Fig](http://fig.sh)
 - [Vagrant](https://docs.vagrantup.com/v2/provisioning/docker.html)
 - [kubernetes](https://github.com/GoogleCloudPlatform/kubernetes)
 - [maestro-ng](https://github.com/signalfuse/maestro-ng)
