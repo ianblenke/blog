@@ -19,7 +19,7 @@ There are a number of orchestration harnesses for Docker available:
 - [Shipyard](http://shipyard-project.com/)
 - [Decking](http://decking.io/)
 - NewRelic's [Centurion](https://github.com/newrelic/centurion)
-- Spotify's [Spotify's](https://github.com/spotify/helios)
+- Spotify's [Helios](https://github.com/spotify/helios)
 - [Stampede](https://github.com/cattleio/stampede)
 - [Chef](https://www.getchef.com/solutions/docker/)
 - [Ansible](http://www.ansible.com/docker)
