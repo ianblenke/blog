@@ -2,6 +2,7 @@
 layout: post
 title: "Using Boot2Docker"
 date: 2014-11-04 23:13:25 -0500
+date_formatted: Nov 4th, 2014
 comments: true
 categories: boot2docker
 ---

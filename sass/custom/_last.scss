@@ -1,0 +1,51 @@
+/* overrides of the lousy styles from _syntax.scss */
+.CodeRay pre, p code, li code {
+  background: #efefef;
+  color: #000;
+  border: 1px solid #565656;
+  border-top-color: #cbcbcb;
+  border-left-color: #a5a5a5;
+  border-right-color: #a5a5a5;
+}
+
+/* fixes issue where the whole line wouldn't get colored in a diff */
+.CodeRay span.insert, .CodeRay span.change, .CodeRay span.delete {
+  width: auto;
+}
+
+.CodeRay {
+  background-color: $code-bg;
+  padding: 0px;
+  pre {
+    padding: 5px 0px 5px 10px;
+  }
+}
+
+.CodeRay pre, .CodeRay .highlight, .CodeRay .gist-highlight  {
+  background-color: $code-bg;
+  border: 0px;
+  color: #F8F8F8;
+  margin-bottom: 0px;
+}
+
+// Nice line numbers
+table.CodeRay td {
+  padding: 0px;
+}
+.CodeRay .line-numbers, .CodeRay .no {
+  background-color: $line-nb-bg;
+  padding-right: 1em;
+  pre {
+      background-color: $line-nb-bg;
+      border: 0px;
+      margin: 0px;
+  }
+}
+.CodeRay .line { background-color: $line-nb-bg }
+.CodeRay span.line-numbers { padding: 0px 10px 0px 0px }
+
+// As in Sublime editor
+// Violet for constants ("Rails")
+.CodeRay .constant { color: #9B859D; }
+// Blue for predefined-constants ("self")
+.CodeRay .predefined-constant { color: #7587A6; font-weight: normal  }

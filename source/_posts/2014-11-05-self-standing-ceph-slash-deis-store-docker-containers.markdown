@@ -2,6 +2,7 @@
 layout: post
 title: "Self-standing Ceph/deis-store docker containers"
 date: 2014-11-05 14:40:59 -0500
+date_formatted: Nov 5th, 2014
 comments: true
 categories: [docker, boot2docker, ceph, deis, aws, s3, orchestration]
 ---

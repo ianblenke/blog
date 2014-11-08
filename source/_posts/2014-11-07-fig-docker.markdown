@@ -2,6 +2,7 @@
 layout: post
 title: "fig-docker"
 date: 2014-11-07 19:20:06 -0500
+date_formatted: Nov 7th, 2014
 comments: true
 categories: docker fig development orchestration
 ---
@@ -56,11 +57,11 @@ Rather than do that, I've built a new [ianblenke/fig-docker](https://registry.hu
 
 This allows running fig inside a docker container using:
 
-    docker run -v $(pwd):/app -v $DOCKER_CERT_PATH:/certs -e DOCKER_CERT_PATH=/certs -e DOCKER_HOST=$DOCKER_HOST -e DOCKER_TLS_VERIFY=$DOCKER_TLS_VERIFY -ti --rm ianblenke/fig-docker fig --help
+{% gist 6cd8f8a4065bcac99443 %}
 
 Alternatively, a developer can alias it:
 
-    alias fig="docker run -v $(pwd):/app -v $DOCKER_CERT_PATH:/certs -e DOCKER_CERT_PATH=/certs -e DOCKER_HOST=$DOCKER_HOST -e DOCKER_TLS_VERIFY=$DOCKER_TLS_VERIFY -ti --rm ianblenke/fig-docker fig"
+{% gist f48bc5cf8b2567bd8006 %}
 
 Now the developer can run `fig` as if it is running on their development host, continuing the boot2docker illusion.
 
@@ -72,9 +73,7 @@ That means you would actually have to have the current path inside the boot2dock
 
 To do that, on a Mac, do this:
 
-    boot2docker down
-    VBoxManage sharedfolder add boot2docker-vm -name home -hostpath /Users
-    boot2docker up
+{% gist 444c3f6552744ef25f59 %}
 
 From this point forward, until the next `boot2docker init`, your boot2docker VM should have your home directory mounted as /Users and the path should be the same.
 
@@ -86,54 +85,7 @@ Let's setup a very quick [Ruby on Rails](http://rubyonrails.org/) application fr
 
 Here's a quick script that does just that. The only requirement is a functional docker command able to spin up containers.
 
-    #!/bin/bash
-    set -ex
-
-    # Source the boot2docker environment variables
-    eval $(boot2docker shellinit 2>/dev/null)
-
-    # Use a rails container to create a new rails project in the current directory called figgypudding
-    docker run -it --rm -v $(pwd):/app rails:latest bash -c 'rails new figgypudding; cp -a /figgypudding /app'
-
-    cd figgypudding
-
-    # Create the Dockerfile used to build the figgypudding_web:latest image used by the figgypudding_web_1 container
-    cat <<EOD > Dockerfile
-    FROM rails:onbuild
-    ENV HOME /usr/src/app
-    EOD
-
-    # This is the Fig orchestration configuration
-    cat <<EOF > fig.yml
-    mysql:
-      environment:
-        MYSQL_ROOT_PASSWORD: supersecret
-        MYSQL_DATABASE: figgydata
-        MYSQL_USER: figgyuser
-        MYSQL_PASSWORD: password
-      ports:
-        - "3306:3306"
-      image: mysql:latest
-    figgypudding:
-      environment:
-        RAILS_ENV: development
-        DATABASE_URL: mysql2://figgyuser:password@172.17.42.1:3306/figgydata
-      links:
-        - mysql
-      ports:
-        - "3000:3000"
-      build: .
-      command: bash -xc 'bundle exec rake db:migrate && bundle exec rails server'
-    EOF
-
-    # Rails defaults to sqlite, convert it to use mysql
-    sed -i -e 's/sqlite3/mysql2/' Gemfile
-
-    # Update the Gemfile.lock using the rails container we referenced earlier
-    docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app rails:latest bundle update
-
-    # Use the fig command from my fig-docker container to fire up the Fig formation
-    docker run -v $(pwd):/app -v $DOCKER_CERT_PATH:/certs -e DOCKER_CERT_PATH=/certs -e DOCKER_HOST=$DOCKER_HOST -e DOCKER_TLS_VERIFY=$DOCKER_TLS_VERIFY -ti --rm ianblenke/fig-docker fig up
+{% gist 92648de57cb7d38fd1e8 %}
 
 After running that, there should now be a web server running on the boot2docker VM, which should generally be [http://192.168.59.103:3000/](http://192.168.59.103:3000/) as that seems to be the common boot2docker default IP.
 
