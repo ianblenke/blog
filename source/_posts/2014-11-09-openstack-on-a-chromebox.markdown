@@ -47,7 +47,7 @@ On this first reboot, the existing on-board storage will be wiped entirely, eras
 Step 3: Login to the console as "chronos"
 -----------------------------------------
 
-Using cntl-alt-F2, enter the username "chronos" at the login: prompt.
+Using cntl-alt-F2, enter the username "chronos" at the login: prompt. Hit return at the password: prompt (the default chronos password is an empty string).
 
 Note: You did not actually need to login to google via the UI interface.
 
@@ -117,7 +117,7 @@ With my new SeaBIOS bootstrap, I now must hit "Esc" and "2" to boot off of the f
 
 This presented me with the Ubunu boot menu.
 
-Beyond this point, I installed Ubunto to the two external 1TB USB disks, with a primary boot partition (type "83") on each for /boot as normal linux ext4, and a primary RAID partition (type "fd") on each for the RAID1 mirror upon which I layered LVM with a volume group named "vg" and a "rootfs" and a "swapfs" logical volume. At the end, I installed the grub boot sector to /dev/sdb and /dev/sdc (the two external 1TB USB drives).
+Beyond this point, I installed Ubuntu to the two external 1TB USB disks, with a primary boot partition (type "83") on each for /boot as normal linux ext4, and a primary RAID partition (type "fd") on each for the RAID1 mirror upon which I layered LVM with a volume group named "vg" and a "rootfs" and a "swapfs" logical volume. At the end, I installed the grub boot sector to /dev/sdb and /dev/sdc (the two external 1TB USB drives).
 
 After removing the USB stick for the Ubuntu installation media, the SeaBIOS entries shifted by 1.
 
