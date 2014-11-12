@@ -12,9 +12,11 @@ A common devops problem when developing [Docker](http://docker.io) containers is
 There are a number of orchestration harnesses for Docker available:
 
 - Docker's [Fig](http://fig.sh)
+- [blockade](https://github.com/dcm-oss/blockade)
 - [Vagrant](https://docs.vagrantup.com/v2/provisioning/docker.html)
 - [kubernetes](https://github.com/GoogleCloudPlatform/kubernetes)
 - [maestro-ng](https://github.com/signalfuse/maestro-ng)
+- [crane](https://github.com/michaelsauter/crane)
 - Centurylink's [Panamax](http://panamax.io/)
 - [Shipyard](http://shipyard-project.com/)
 - [Decking](http://decking.io/)
@@ -24,10 +26,14 @@ There are a number of orchestration harnesses for Docker available:
 - [Chef](https://www.getchef.com/solutions/docker/)
 - [Ansible](http://www.ansible.com/docker)
 - [Flynn](https://flynn.io/)
-- [Tsuru](http://tsuru.io/)
+- [Shipper](https://github.com/mailgun/shipper)
+- [Octohost](octohost.io)
+- [Tsuru](http://tsuru.io/) with [docker-cluster](https://github.com/tsuru/docker-cluster)
 - [Flocker](https://clusterhq.com/)
 - [CloudFocker](https://github.com/CloudCredo/cloudfocker)
+- [Clocker](http://www.cloudsoftcorp.com/blog/2014/06/clocker-creating-a-docker-cloud-with-apache-brooklyn/) and [Apache Brooklyn](http://brooklyn.incubator.apache.org)
 - [CloudFoundry](http://cloudfoundry.org)'s [docker-boshrelease](https://github.com/cf-platform-eng/docker-boshrelease)/[diego](https://github.com/cloudfoundry-incubator/diego-release)
+- Mesosphere [Deimos](https://github.com/mesosphere/deimos)
 - [Deis](http://deis.io) (a PaaS that can git push deploy containers using [Heroku](http://heroku.com) buildpacks _or_ a Dockerfile)
 
 There are also RAFT/GOSSIP clustering solutions like:
