@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Using Boot2Docker"
+summary: A quick guide to using Boot2Docker
+comment: Discovering the docker command-line with boot2docker
+linkedin_share: https://www.linkedin.com/nhome/updates?topic=5938522278869348352
 date: 2014-11-04 23:13:25 -0500
 date_formatted: Nov 4th, 2014
 comments: true

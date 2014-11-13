@@ -2,6 +2,9 @@
 layout: post
 title: "Docker rspec TDD"
 date: 2014-11-10 14:38:37 -0500
+summary: Dockerfile TDD using rspec and boot2docker, with a working spec_helper for TLS support.
+comment: A guide to test-driven design of a Dockerfile using rspec and boot2docker
+linkedin_share: https://www.linkedin.com/nhome/updates?topic=5938528528290045952
 date_formatted: Nov 10, 2014
 comments: true
 categories: docker rspec tdd

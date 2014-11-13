@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Self-standing Ceph/deis-store docker containers"
+summary: Private S3 via ceph using deis-store Docker containers
+comment: Ceph orchestration using deis-store
 date: 2014-11-05 14:40:59 -0500
 date_formatted: Nov 5th, 2014
 comments: true

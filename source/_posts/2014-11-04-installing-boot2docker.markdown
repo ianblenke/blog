@@ -1,6 +1,9 @@
 ---
 layout: post
-title: "Installing Boot2Docker"
+title: Installing Boot2Docker
+summary: A quick guide to installing Boot2Docker
+comment: Both command-line and point-and-click installation guide for boot2docker
+linkedin_share: https://www.linkedin.com/nhome/updates?topic=5938521225469911040
 date: 2014-11-04 22:41:53 -0500
 date_formatted: Nov 4th, 2014
 comments: true

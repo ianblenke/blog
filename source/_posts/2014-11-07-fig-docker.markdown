@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "fig-docker"
+summary: Comprehensive list of Docker orchestration tools, an introduction to Fig, and using a docker container for the fig command-line tool regardless of boot2docker host platform
+comment: The reasoning behind using Fig, and the docker image for windows hosts without python
+linkedin_share: https://www.linkedin.com/nhome/updates?topic=5938526127147474944
 date: 2014-11-07 19:20:06 -0500
 date_formatted: Nov 7th, 2014
 comments: true

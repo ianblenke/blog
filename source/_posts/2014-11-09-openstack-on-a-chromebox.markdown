@@ -1,10 +1,13 @@
 ---
 layout: post
 title: "OpenStack on a Chromebox"
+summary: Hacking a ChromeBox into an OpenStack server by flashing SeaBIOS, installing Ubuntu, and running a DevStack. Includes pictures and configs.
+comment: A guide to hacking a chromebox to run OpenStack
+linkedin_share: https://www.linkedin.com/nhome/updates?topic=5938527688246439936
 date: 2014-11-09 19:02:40 -0500
 date_formatted: Nov 9th, 2014
 comments: true
-categories: 
+categories: openstack chromebox devstack ubuntu seabios
 ---
 
 Saturday's project was installing OpenStack on a ChromeBox.

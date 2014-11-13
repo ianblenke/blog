@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Immutable Infrastructure Persistence"
+summary: "Barcamp 2014 presentation slides"
+comment: "Persistence layers as Docker containers"
+linkedin_share: https://www.linkedin.com/nhome/updates?topic=5938518605426601984
 date: 2014-10-18 11:55:14 -0500
 date_formatted: Oct 18th, 2014
 comments: true

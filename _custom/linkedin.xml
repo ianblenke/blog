@@ -1,0 +1,11 @@
+<share>
+  <comment>%{blog_comment}</comment>
+  <content>
+    <title>%{blog_title}</title>
+    <description>%{blog_summary}</description>
+    <submitted-url>%{blog_url}</submitted-url>
+  </content>
+  <visibility> 
+    <code>anyone</code> 
+  </visibility>
+</share>
