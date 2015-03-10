@@ -9,11 +9,11 @@ comment: Howto deploy the Amazon ECS agent on CoreOS and enumerate the cluster
 comments: true
 categories: coreos docker aws ecs
 ---
-First, read the CoreOS page on ECS:
+Today, I stumbled on the official [CoreOS page on ECS](https://coreos.com/docs/running-coreos/cloud-providers/ecs/).
 
-https://coreos.com/docs/running-coreos/cloud-providers/ecs/
+I've been putting off ECS for a while, it was time to give it a try.
 
-We will need the aws commandline tool:
+To create the ECS cluster, we will need the aws commandline tool:
 
     which aws || pip install awscli
 
@@ -84,5 +84,22 @@ And we can query ECS and get the same:
     "i-23456789 arn:aws:ecs:us-east-1:123456789012:container-instance/c3506771-1234-4321-1234-1f1b1783c924"
     "i-34567891 arn:aws:ecs:us-east-1:123456789012:container-instance/75d30c64-1234-4321-1234-8be8edeec9c6"
 
-Next steps: Deploy Mesos using the [ecs-mesos-scheduler-driver](https://github.com/awslabs/ecs-mesos-scheduler-driver), as [summarized by jpetazzo](http://jpetazzo.github.io/2015/01/14/amazon-docker-ecs-ec2-container-service/)
+This ECS cluster is ready to use.
+
+Unfortunately, there is no scheduler here. ECS is a harness for orchestrating docker containers in a cluster as _tasks_. 
+
+Where these tasks are allocated is left up to the AWS customer.
+
+What we really need is a _scheduler_.
+
+CoreOS has a form of a scheduler in fleet, but that is for fleet units of systemd services, and is not limited to docker containers as ECS is.
+Fleet's scheduler is also currently a bit weak in that it schedules new units to the fleet machine with the fewest number of units.
+
+Kubernetes has a random scheduler, which is better in a couple ways, but does not fairly allocate the system resources.
+
+The _best_ scheduler at present is Mesos, which takes into account resource sizing estimates and current utilization.
+
+Normally, Mesos uses Mesos Slaves to run work. Mesos can also use ECS as a backend instead.
+
+My next steps: Deploy Mesos using the [ecs-mesos-scheduler-driver](https://github.com/awslabs/ecs-mesos-scheduler-driver), as [summarized by jpetazzo](http://jpetazzo.github.io/2015/01/14/amazon-docker-ecs-ec2-container-service/)
 
