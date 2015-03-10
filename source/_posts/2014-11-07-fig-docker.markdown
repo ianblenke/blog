@@ -30,7 +30,7 @@ There are a number of orchestration harnesses for Docker available:
 - [Ansible](http://www.ansible.com/docker)
 - [Flynn](https://flynn.io/)
 - [Shipper](https://github.com/mailgun/shipper)
-- [Octohost](octohost.io)
+- [Octohost](http://octohost.io)
 - [Tsuru](http://tsuru.io/) with [docker-cluster](https://github.com/tsuru/docker-cluster)
 - [Flocker](https://clusterhq.com/)
 - [CloudFocker](https://github.com/CloudCredo/cloudfocker)
@@ -38,6 +38,13 @@ There are a number of orchestration harnesses for Docker available:
 - [CloudFoundry](http://cloudfoundry.org)'s [docker-boshrelease](https://github.com/cf-platform-eng/docker-boshrelease)/[diego](https://github.com/cloudfoundry-incubator/diego-release)
 - Mesosphere [Deimos](https://github.com/mesosphere/deimos)
 - [Deis](http://deis.io) (a PaaS that can git push deploy containers using [Heroku](http://heroku.com) buildpacks _or_ a Dockerfile)
+
+There are a number of hosted service offerings now as well:
+
+- [Amazon ECS](http://aws.amazon.com/ecs)
+- [CloudShell](http://www.qualisystems.com/cloudshell-6-0-sneak-peek/)
+- [ElasticBox](https://elasticbox.com/how-it-works/)
+- Aw, heck, just check the [docker ecosystem mindmap](http://www.mindmeister.com/389671722/docker-ecosystem)
 
 There are also RAFT/GOSSIP clustering solutions like:
 
