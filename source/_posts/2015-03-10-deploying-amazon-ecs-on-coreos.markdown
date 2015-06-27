@@ -3,7 +3,6 @@ layout: post
 title: "Deploying Amazon ECS on CoreOS"
 date: 2015-03-10 16:38:33 -0400
 date_formatted: Mar 3, 2015
-linkedin_share:
 linkedin_share: https://www.linkedin.com/nhome/updates?topic=5981175739561623552
 summary: Deploying Amazon ECS on CoreOS
 comment: Howto deploy the Amazon ECS agent on CoreOS and enumerate the cluster
