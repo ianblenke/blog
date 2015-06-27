@@ -118,15 +118,15 @@ The easiest/best way to deploy a VPC is to use a [CloudFormation template](http:
 
 Below is a public gist of a VPC CloudFormation that I use for deployment:
 
-{% gist 0a6a6f26d1ecaa0d81eb }
+{% gist 0a6a6f26d1ecaa0d81eb %}
 
 Here is an example CloudFormation parameters file for this template:
 
-{% gist 9f4b8dd2b39c7d1c31ef }
+{% gist 9f4b8dd2b39c7d1c31ef %}
 
 To script the creation, updating, watching, and deleting of the CloudFormation VPC, I have this Makefile as well:
 
-{% gist 55b740ff19825d621ef4 }
+{% gist 55b740ff19825d621ef4 %}
 
 You can get these same files by cloning my github project, and ssuming you have a profile named `aws-dev` as mentioned above, you can even run `make` and have it create the `myapp-dev` VPC via CloudFormation:
 
@@ -142,7 +142,7 @@ When this is complete, you can see the CloudFormation outputs by running:
 
 The output will look something like this:
 
-{% gist 59715079304a6db7182c }
+{% gist 59715079304a6db7182c %}
 
 These CloudFormation Outputs list parameters that we will need to pass to the ElasticBeanstalk Environment creation during the next part of this walkthrough. 
 
