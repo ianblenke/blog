@@ -18,6 +18,8 @@ others facing the same challenges.
 
 # Part 1 : Preparing a VPC for your ElasticBeanstalk environments
 
+---
+
 ### Step 1 : Prepare your AWS development environment.
 
 On OS/X, I install [homebrew](http://brew.sh), and then:
@@ -68,7 +70,7 @@ Again, you may (or may not) need to prefix that pip install with `sudo`, dependi
 sudo pip install --upgrade awscli
 ```
 
-### Prepare your AWS environment variables
+### Step 2: Prepare your AWS environment variables
 
 If you haven't already, [prepare for AWS cli access](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#config-settings-and-precedence).
 
@@ -108,7 +110,7 @@ Default output format [None]: json
 
 Getting in the habit of specifying `--profile aws-dev` is a bit of a reassurance that you're provisioning resources into the correct AWS account, and not sullying AWS cloud resources between VPC environments.
 
-### Step 2: Preparing a VPC
+### Step 3: Preparing a VPC
 
 Deploying anything to AWS EC2 Classic instances these days is to continue down the path of legacy maintenance.
 
