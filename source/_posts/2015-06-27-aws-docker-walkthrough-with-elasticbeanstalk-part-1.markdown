@@ -16,9 +16,9 @@ others facing the same challenges.
 
 ---
 
-= Part 1 : Preparing a VPC for your ElasticBeanstalk environments
+# Part 1 : Preparing a VPC for your ElasticBeanstalk environments
 
-== Step 1 : Prepare your AWS development environment.
+## Step 1 : Prepare your AWS development environment.
 
 On OS/X, I install [homebrew](http://brew.sh), and then:
 
@@ -108,7 +108,7 @@ Default output format [None]: json
 
 Getting in the habit of specifying `--profile aws-dev` is a bit of a reassurance that you're provisioning resources into the correct AWS account, and not sullying AWS cloud resources between VPC environments.
 
-== Step 2: Preparing a VPC
+## Step 2: Preparing a VPC
 
 Deploying anything to AWS EC2 Classic instances these days is to continue down the path of legacy maintenance.
 
