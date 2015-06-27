@@ -34,7 +34,7 @@ On Windows, I install [chocolatey](https://chocolatey.org/) and then:
 choco install awscli
 ```
 
-As `awscli` is a python tool, we can alternatively use python `easyinstall` or `pip` directly:
+Because `awscli` is a python tool, on either of these, or on the various Linux distribution flavors, we can also avoid native package management and alternatively use python `easyinstall` or `pip` directly:
 
 ```bash
 pip install awscli
@@ -69,6 +69,8 @@ Again, you may (or may not) need to prefix that pip install with `sudo`, dependi
 ```bash
 sudo pip install --upgrade awscli
 ```
+
+For the hardcore Docker fans out there, this is pretty trivial to run as a container as well. See [CenturyLinkLabs/docker-aws-cli](https://github.com/CenturyLinkLabs/docker-aws-cli) for a good example of that. Managing an aws config file requires volume mapping, or passing `-e AWS_ACCESS_KEY_ID={redacted} -e AWS_SECRET_ACCESS_KEY={redacted}`. There are various guides to doing this out there. This will not be one of them ;)
 
 ### Step 2: Prepare your AWS environment variables
 
