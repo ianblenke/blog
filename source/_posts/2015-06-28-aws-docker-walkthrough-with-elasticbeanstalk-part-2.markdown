@@ -2,7 +2,7 @@
 layout: post
 title: "AWS Docker Walkthrough with ElasticBeanstalk: Part 2"
 date_formatted: Jun 28, 2015
-date: 2015-06-27 00:57:08 -0400
+date: 2015-06-28 00:57:08 -0400
 comments: true
 categories: amazon aws elasticbeanstalk docker ecs cloudformation ebextensions
 summary: Creating ElasticBeanstalk enviroments
