@@ -154,53 +154,51 @@ The application must exist in AWS first, which is why this is run _after_ the pr
 
 You may be prompted for some critical bits:
 
-```bash
-$ eb init --profile aws-dev
-eb init --profile aws-dev
+    $ eb init --profile aws-dev
+    eb init --profile aws-dev
+    
+    Select a default region
+    1) us-east-1 : US East (N. Virginia)
+    2) us-west-1 : US West (N. California)
+    3) us-west-2 : US West (Oregon)
+    4) eu-west-1 : EU (Ireland)
+    5) eu-central-1 : EU (Frankfurt)
+    6) ap-southeast-1 : Asia Pacific (Singapore)
+    7) ap-southeast-2 : Asia Pacific (Sydney)
+    8) ap-northeast-1 : Asia Pacific (Tokyo)
+    9) sa-east-1 : South America (Sao Paulo)
+    (default is 3): 1
+    
+    Select an application to use
+    1) myapp
+    2) [ Create new Application ]
+    (default is 2): 1
+    
+    Select a platform.
+    1) PHP
+    2) Node.js
+    3) IIS
+    4) Tomcat
+    5) Python
+    6) Ruby
+    7) Docker
+    8) Multi-container Docker
+    9) GlassFish
+    10) Go
+    (default is 1): 7
+    
+    Select a platform version.
+    1) Docker 1.6.2
+    2) Docker 1.6.0
+    3) Docker 1.5.0
+    (default is 1): 1
+    Do you want to set up SSH for your instances?
+    (y/n): y
 
-Select a default region
-1) us-east-1 : US East (N. Virginia)
-2) us-west-1 : US West (N. California)
-3) us-west-2 : US West (Oregon)
-4) eu-west-1 : EU (Ireland)
-5) eu-central-1 : EU (Frankfurt)
-6) ap-southeast-1 : Asia Pacific (Singapore)
-7) ap-southeast-2 : Asia Pacific (Sydney)
-8) ap-northeast-1 : Asia Pacific (Tokyo)
-9) sa-east-1 : South America (Sao Paulo)
-(default is 3): 1
-
-Select an application to use
-1) myapp
-2) [ Create new Application ]
-(default is 2): 1
-
-Select a platform.
-1) PHP
-2) Node.js
-3) IIS
-4) Tomcat
-5) Python
-6) Ruby
-7) Docker
-8) Multi-container Docker
-9) GlassFish
-10) Go
-(default is 1): 7
-
-Select a platform version.
-1) Docker 1.6.2
-2) Docker 1.6.0
-3) Docker 1.5.0
-(default is 1): 1
-Do you want to set up SSH for your instances?
-(y/n): y
-
-Select a keypair.
-1) myapp-dev
-2) [ Create new KeyPair ]
-(default is 2): 1
-```
+    Select a keypair.
+    1) myapp-dev
+    2) [ Create new KeyPair ]
+    (default is 2): 1
 
 Alternatively, to avoid the questions, you can specify the full arguments:
 
@@ -210,7 +208,7 @@ eb init myapp --profile aws-dev --region us-east-1 -p 'Docker 1.6.2' -k myapp-de
 
 The end result is a `.elasticbeanstalk/config.yml` that will look something like this:
 
-```bash
+```yaml
 branch-defaults:
   master:
     environment: null
@@ -240,43 +238,39 @@ There are two ways to create a new ElasticBeanstalk environment:
 
 The first way looks something like this:
 
-```bash
-eb create myapp-dev --verbose \
-  --profile aws-dev \
-  --tier WebServer \
-  --cname myapp-dev \
-  -p '64bit Amazon Linux 2015.03 v1.4.3 running Docker 1.6.2' \
-  -k myapp-dev \
-  -ip myapp-dev-InstanceProfile-1KCQJP9M5TSVZ \
-  --tags Project=myapp,Environment=dev \
-  --envvars DEBUG=info \
-  --vpc.ec2subnets=subnet-995236b2,subnet-6aa4fd1d,subnet-ad3644f4 \
-  --vpc.elbsubnets=subnet-995236b2,subnet-6aa4fd1d,subnet-ad3644f4 \
-  --vpc.publicip --vpc.elbpublic --vpc.securitygroups=sg-0c50a56b
-```
+    eb create myapp-dev --verbose \
+      --profile aws-dev \
+      --tier WebServer \
+      --cname myapp-dev \
+      -p '64bit Amazon Linux 2015.03 v1.4.3 running Docker 1.6.2' \
+      -k myapp-dev \
+      -ip myapp-dev-InstanceProfile-1KCQJP9M5TSVZ \
+      --tags Project=myapp,Environment=dev \
+      --envvars DEBUG=info \
+      --vpc.ec2subnets=subnet-995236b2,subnet-6aa4fd1d,subnet-ad3644f4 \
+      --vpc.elbsubnets=subnet-995236b2,subnet-6aa4fd1d,subnet-ad3644f4 \
+      --vpc.publicip --vpc.elbpublic --vpc.securitygroups=sg-0c50a56b
 
 The `Makefile` has an `environment` target that removes the need to fill in the fields manually:
 
-```
-outputs:
-    @which jq > /dev/null 2>&1 || ( which brew && brew install jq || which apt-get && apt-get install jq || which yum && yum install jq || which choco && choco install jq)
-    @aws cloudformation describe-stacks --stack-name myapp-dev --profile aws-dev --region us-east-1 | jq -r '.Stacks[].Outputs | map({key: .OutputKey, value: .OutputValue}) | from_entries'
+    outputs:
+        @which jq > /dev/null 2>&1 || ( which brew && brew install jq || which apt-get && apt-get install jq || which yum && yum install jq || which choco && choco install jq)
+        @aws cloudformation describe-stacks --stack-name myapp-dev --profile aws-dev --region us-east-1 | jq -r '.Stacks[].Outputs | map({key: .OutputKey, value: .OutputValue}) | from_entries'
 
-environment:
-    eb create $(STACK) --verbose \
-      --profile aws-dev \
-      --tier WebServer \
-      --cname $(shell whoami)-$(STACK) \
-      -p '64bit Amazon Linux 2015.03 v1.4.3 running Docker 1.6.2' \
-      -k $(STACK) \
-      -ip $(shell make outputs | jq -r .InstanceProfile) \
-      --tags Project=$(PROJECT),Environment=$(ENVIRONMENT) \
-      --envvars DEBUG=info \
-      --vpc.ec2subnets=$(shell make outputs | jq -r '[ .VPCSubnet0, .VPCSubnet1, .VPCSubnet2 ] | @csv') \
-      --vpc.elbsubnets=$(shell make outputs | jq -r '[ .VPCSubnet0, .VPCSubnet1, .VPCSubnet2 ] | @csv') \
-      --vpc.publicip --vpc.elbpublic \
-      --vpc.securitygroups=$(shell make outputs | jq -r .VPCSecurityGroup)
-```
+    environment:
+        eb create $(STACK) --verbose \
+          --profile aws-dev \
+          --tier WebServer \
+          --cname $(shell whoami)-$(STACK) \
+          -p '64bit Amazon Linux 2015.03 v1.4.3 running Docker 1.6.2' \
+          -k $(STACK) \
+          -ip $(shell make outputs | jq -r .InstanceProfile) \
+          --tags Project=$(PROJECT),Environment=$(ENVIRONMENT) \
+          --envvars DEBUG=info \
+          --vpc.ec2subnets=$(shell make outputs | jq -r '[ .VPCSubnet0, .VPCSubnet1, .VPCSubnet2 ] | @csv') \
+          --vpc.elbsubnets=$(shell make outputs | jq -r '[ .VPCSubnet0, .VPCSubnet1, .VPCSubnet2 ] | @csv') \
+          --vpc.publicip --vpc.elbpublic \
+          --vpc.securitygroups=$(shell make outputs | jq -r .VPCSecurityGroup)
 
 On the other hand, after a quick config save:
 
