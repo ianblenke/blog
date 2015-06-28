@@ -43,7 +43,7 @@ pip install awscli
 You may (or may not) need to prefix that pip install with `sudo`, depending. ie:
 
 ```bash
-sudo pip install awscli awsebcli
+sudo pip install awscli
 ```
 
 These tools will detect if they are out of date when you run them. You may eventually get a message like:
@@ -150,4 +150,25 @@ The output will look something like this:
 
 These CloudFormation Outputs list parameters that we will need to pass to the ElasticBeanstalk Environment creation during the next part of this walkthrough. 
 
+# One final VPC note: IAM permissions for EC2 instance profiles
+
+As a general rule of thumb, each AWS ElasticBanstalk Application Environment should be given its own IAM Instance Profile to use.
+
+Each AWS EC2 instance should be allowed to assume an IAM role for an IAM instance profile that gives it access to the AWS cloud resources it must interface with.
+
+This is accomplished by [introspecting on AWS instance metadata](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html). If you haven't been exposed to this yet, I strongly recommend poking around at `http://169.254.169.254` from your EC2 instances:
+
+```bash
+curl http://169.254.169.254/latest/meta-data/iam/security-credentials/role-myapp-dev
+```
+
+The JSON returned from that command allows an AWS library call with no credentials automatically obtain time-limited IAM STS credentials when run on AWS EC2 instances.
+
+This avoids having to embed "permanent" IAM access/secret keys as environment variables that may "leak" over time to parties that shouldn't have access.
+
+Early on, we tried to do this as an ebextension in `.ebextensions/00_iam.config`, but this only works if the admin running the `eb create` has IAM permissions for the AWS account, and it appears impossible to change the launch InstanceProfile by defining option settings or overriding cloud resources in an ebextensions config file.
+
+Instead, the VPC above generates an `InstanceProfile` that can be referenced later. More on that later in Part 2.
+
 Stay tuned...
+
