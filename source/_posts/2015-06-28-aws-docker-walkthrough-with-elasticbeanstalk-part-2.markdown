@@ -110,7 +110,7 @@ aws ec2 import-key-pair --key-name myapp-dev --public-key-material "$(cat ~/.ssh
 Alternatively, if you are on a development platform without ssh-keygen for some reason, you can have AWS generate it for you:
 
 ```bash
-aws ec2 create-key-pair --key-name cosmos-dev > ~/.ssh/id_rsa-cosmos-dev
+aws ec2 create-key-pair --key-name myapp-dev > ~/.ssh/myapp-dev
 ```
 
 The downside to the second method is that AWS has the private key (as they generated it, and you shipped it via https over the network to your local machine), whereas in the first example they do not.
