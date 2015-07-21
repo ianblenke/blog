@@ -1,0 +1,12 @@
+baseurl = "http://ian.blenke.com/"
+languageCode = "en-us"
+title = "Ian Blenke"
+copyright = "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."
+theme = "journal"
+
+[Params]
+description = "a 6502 hack in a cloud computing world"
+
+[author]
+name = "Ian Blenke"
+
